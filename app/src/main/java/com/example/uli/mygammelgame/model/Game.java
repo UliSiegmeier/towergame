@@ -3,7 +3,7 @@ package com.example.uli.mygammelgame.model;
 public class Game {
 
     private GameState state;
-    private enum GameState {IN_PROGRESS, FINISHED}
+    public static enum GameState {IN_PROGRESS, FINISHED}
 
     private int turn;
     private int gold;
@@ -24,7 +24,7 @@ public class Game {
 
     private void initSettings() {
         maxTurns = 100;
-        populationGrowthPerTurn = 0.01f;
+        populationGrowthPerTurn = 0.03f;
         goldPerPopulation = 1;
     }
 
@@ -54,7 +54,13 @@ public class Game {
     }
 
     // GETTERS
-    public int getTurn() { return turn; }
+
+    public GameState getState() {
+        return state;
+    }
+    public int getTurn() {
+        return turn;
+    }
     public double getPopulation() { return population; }
     public int getPopulationRounded() { return populationRounded; }
     public int getGold() { return gold; }

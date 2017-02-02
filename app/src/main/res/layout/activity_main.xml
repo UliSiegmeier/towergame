@@ -16,20 +16,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/AppTheme"
-        android:text="Turns:0"
         />
+    <!--android:text="Turns:0"-->
+
     <TextView
         android:id="@+id/counter_gold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/AppTheme"
-        android:text="Gold:0" />
+        />
+        <!--android:text="Gold:0" -->
+
     <TextView
         android:id="@+id/counter_population"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/AppTheme"
-        android:text="Population:0" />
+        />
+        <!--android:text="Population:0"-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +44,8 @@
         <Button
             android:id="@+id/button_reset"
             style="@style/button_secondary"
-            android:text="@string/button_reset_text"/>
+            android:text="@string/button_reset_text"
+            android:onClick="onResetClicked"/>
 
         <Space
             android:layout_width="0dp"
@@ -49,7 +55,8 @@
         <Button
             android:id="@+id/button_next_turn"
             style="@style/button_primary"
-            android:text="@string/button_next_turn_text" />
+            android:text="@string/button_next_turn_text"
+            android:onClick="onNextTurnClicked"/>
 
 
     </LinearLayout>

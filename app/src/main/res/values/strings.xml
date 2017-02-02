@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">MyGammelGame</string>
 
+    <string name="label_turn_text">Turn: %d</string>
+    <string name="label_gold_text">Gold: %d</string>
+    <string name="label_population_text">Population %d</string>
+
     <string name="button_reset_text">Reset</string>
     <string name="button_next_turn_text">Next Turn</string>
 
