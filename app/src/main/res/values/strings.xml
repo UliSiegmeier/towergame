@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyGammelGame</string>
+
+    <string name="button_reset_text">Reset</string>
+    <string name="button_next_turn_text">Next Turn</string>
+
+</resources>
