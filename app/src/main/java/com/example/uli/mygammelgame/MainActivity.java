@@ -1,5 +1,6 @@
 package com.example.uli.mygammelgame;
 
+import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +17,10 @@ public class MainActivity extends AppCompatActivity {
     private Game game;
 
     private TextView turnLabel;
+    private TextView scoreLabel;
     private TextView goldLabel;
     private TextView populationLabel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         turnLabel = (TextView) findViewById(R.id.counter_turns);
+        scoreLabel = (TextView) findViewById(R.id.counter_score);
         goldLabel = (TextView) findViewById(R.id.counter_gold);
         populationLabel = (TextView) findViewById(R.id.counter_population);
 
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateLabels() {
         turnLabel.setText("Turns: "+game.getTurn());
+        turnLabel.setText("Score: "+game.getScore());
         goldLabel.setText("Gold: "+game.getGold());
         populationLabel.setText("Population "+game.getPopulation());
     }

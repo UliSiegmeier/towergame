@@ -6,6 +6,7 @@ public class Game {
     public static enum GameState {IN_PROGRESS, FINISHED}
 
     private int turn;
+    private int score;
     private int gold;
     private double population;
     private int populationRounded;
@@ -32,6 +33,7 @@ public class Game {
         state = GameState.IN_PROGRESS;
         initSettings();
         turn = 1;
+        score = 0;
         gold = 0;
         population = 1;
         populationRounded = 1;
@@ -42,15 +44,22 @@ public class Game {
             // update turns
             turn = turn + 1;
 
-            // update population
+            // 1. update population
             population = population + (population * populationGrowthPerTurn);
             populationRounded = (int) Math.floor(population);
 
-            // update gold
+            // 2. update gold
             gold = (int) Math.floor(gold + (populationRounded * goldPerPopulation));
+
+            // Last: Score
+            score = calculateScore();
 
             if (turn >= maxTurns) state = GameState.FINISHED;
         }
+    }
+
+    public int calculateScore() {
+        return (populationRounded * 10) + gold;
     }
 
     // GETTERS
@@ -58,12 +67,21 @@ public class Game {
     public GameState getState() {
         return state;
     }
+    public int getScore() {
+        return score;
+    }
     public int getTurn() {
         return turn;
     }
-    public double getPopulation() { return population; }
-    public int getPopulationRounded() { return populationRounded; }
-    public int getGold() { return gold; }
+    public double getPopulation() {
+        return population;
+    }
+    public int getPopulationRounded() {
+        return populationRounded;
+    }
+    public int getGold() {
+        return gold;
+    }
 
     @Override
     public String toString() {

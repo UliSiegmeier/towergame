@@ -2,6 +2,7 @@
     <string name="app_name">MyGammelGame</string>
 
     <string name="label_turn_text">Turn: %d</string>
+    <string name="label_score_text">Score: %d</string>
     <string name="label_gold_text">Gold: %d</string>
     <string name="label_population_text">Population %d</string>
 

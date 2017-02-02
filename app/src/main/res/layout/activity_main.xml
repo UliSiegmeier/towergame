@@ -20,6 +20,13 @@
     <!--android:text="Turns:0"-->
 
     <TextView
+        android:id="@+id/counter_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AppTheme"
+        />
+
+    <TextView
         android:id="@+id/counter_gold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
