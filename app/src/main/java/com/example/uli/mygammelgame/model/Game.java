@@ -1,13 +1,9 @@
 package com.example.uli.mygammelgame.model;
 
-/**
- * Created by uli on 2/2/17.
- */
-
 public class Game {
 
     private GameState state;
-    private enum GameState {IN_PROGRESS, FINISHED};
+    private enum GameState {IN_PROGRESS, FINISHED}
 
     private int turn;
     private int gold;
@@ -23,6 +19,7 @@ public class Game {
     public Game () {
         // TODO: init settings
         restart();
+        // someChange
     }
 
     private void initSettings() {
