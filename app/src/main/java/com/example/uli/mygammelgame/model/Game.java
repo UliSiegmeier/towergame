@@ -3,7 +3,7 @@ package com.example.uli.mygammelgame.model;
 public class Game {
 
     private GameState state;
-    public static enum GameState {IN_PROGRESS, FINISHED}
+    public enum GameState {IN_PROGRESS, FINISHED}
 
     private int turn;
     private int score;
