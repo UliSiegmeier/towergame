@@ -19,11 +19,15 @@ public class GameIdGenerator {
         return instance;
     }
 
-    public String generateId(String entityType) {
-        String id = entityType + "_"+idCounter;
+    public String generateId(String typeAsString) {
+        String id = typeAsString + "_"+idCounter;
         idCounter++;
         return id;
     }
+
+//    public String generateId(GameEntityType entityType) {
+//        return generateId(entityType.toString());
+//    }
 
 
 }

@@ -4,6 +4,8 @@ import com.example.uli.mygammelgame.model.GameEntity;
 import com.example.uli.mygammelgame.model.GameIdGenerator;
 import com.example.uli.mygammelgame.model.deprecated.QuantityEntity;
 import com.example.uli.mygammelgame.model.deprecated.QuantityEntityInventory;
+import com.example.uli.mygammelgame.model.inventory.Item;
+import com.example.uli.mygammelgame.model.inventory.ItemMap;
 import com.example.uli.mygammelgame.model.inventory.ResourceMap;
 import com.example.uli.mygammelgame.model.inventory.ResourceType;
 
@@ -84,5 +86,24 @@ public class ExampleUnitTest {
         System.out.println("resources enough for 200 GOLD? "+resourceMap.containsRequiredResource(ResourceType.GOLD,200));
         System.out.println("resources enough for 500 GOLD? "+resourceMap.containsRequiredResource(ResourceType.GOLD,500));
         System.out.println("resources enough for 20 WOOD? "+resourceMap.containsRequiredResource(ResourceType.WOOD,20));
+
+        ResourceMap house_price = new ResourceMap(ResourceType.WOOD, 10);
+        ResourceMap house_input = new ResourceMap();
+        ResourceMap house_output = new ResourceMap(ResourceType.GOLD, 1);
+        Item house1 = new Item("HOUSE", "Wooden House", house_price, house_input, house_output );
+        Item house2 = new Item("HOUSE", "Wooden House", house_price, house_input, house_output );
+        System.out.println("created house 1: "+house1.toString());
+        System.out.println("        - price: "+house1.getPrice());
+        System.out.println("        - input: "+house1.getInputPerTurn());
+        System.out.println("        - output: "+house1.getOutputPerTurn());
+
+        ItemMap itemMap = new ItemMap();
+        itemMap.put(house1);
+        itemMap.put(house1);
+        itemMap.put(house2);
+        System.out.println("Created item map: "+itemMap);
+        System.out.println("        - total input: "+itemMap.getResourceInput());
+        System.out.println("        - total output: "+itemMap.getResourceOutput());
+
     }
 }

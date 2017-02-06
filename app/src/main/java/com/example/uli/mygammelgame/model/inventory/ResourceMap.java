@@ -11,18 +11,31 @@ import java.util.HashMap;
 public class ResourceMap extends HashMap<ResourceType,Integer> {
 
     public ResourceMap() {
+        initAllResourcesWithZero();
+    }
+
+    public ResourceMap(ResourceType resourceType, int amount) {
+        initAllResourcesWithZero();
+        add(resourceType, amount);
+    }
+
+    private void initAllResourcesWithZero() {
         for (ResourceType r : ResourceType.values()) {
             this.add(r,0);
         }
     }
 
-    public void add(ResourceType resourceType, int amount) {
+
+    public ResourceMap add(ResourceType resourceType, int amount) {
         if (this.containsKey(resourceType)) {
             int newValue = this.get(resourceType).intValue() + amount;
-            this.put(resourceType, newValue);
+            put(resourceType, newValue);
+            return this;
         }
-        else
-            this.put(resourceType, amount);
+        else {
+            put(resourceType, amount);
+            return this;
+        }
     }
 
     public boolean containsRequiredResources(ResourceMap requiredResources) {
