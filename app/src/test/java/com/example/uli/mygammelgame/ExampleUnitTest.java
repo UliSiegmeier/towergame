@@ -2,6 +2,7 @@ package com.example.uli.mygammelgame;
 
 import com.example.uli.mygammelgame.model.GameEntity;
 import com.example.uli.mygammelgame.model.GameIdGenerator;
+import com.example.uli.mygammelgame.model.Player;
 import com.example.uli.mygammelgame.model.deprecated.QuantityEntity;
 import com.example.uli.mygammelgame.model.deprecated.QuantityEntityInventory;
 import com.example.uli.mygammelgame.model.inventory.Item;
@@ -104,6 +105,42 @@ public class ExampleUnitTest {
         System.out.println("Created item map: "+itemMap);
         System.out.println("        - total input: "+itemMap.getResourceInput());
         System.out.println("        - total output: "+itemMap.getResourceOutput());
+
+
+        // TEST RULES
+        ItemMap startingBuildings = new ItemMap();
+
+        house_price     = new ResourceMap(ResourceType.FOOD, -3);
+        house_input     = new ResourceMap(ResourceType.FOOD, -1);
+        house_output    = new ResourceMap(ResourceType.POPULATION, 1);
+        Item startingHouse = new Item("HOUSE", "Huts", house_price, house_input, house_output);
+        startingBuildings.put(startingHouse);
+
+        ResourceMap field_price     = new ResourceMap(ResourceType.POPULATION, -1);
+        ResourceMap field_input     = new ResourceMap();
+        ResourceMap field_output    = new ResourceMap(ResourceType.FOOD, 2);
+        Item startingField = new Item("FIELD", "Rice Field", field_price, field_input, field_output);
+        startingBuildings.put(startingField);
+
+        // PLAYER
+        Player player1 = new Player();
+        player1.setStartingBuildings(startingBuildings);
+        System.out.println("Created Player...");
+        System.out.println(player1);
+
+        player1.nextTurn();
+        System.out.println("Turn 1 - "+player1);
+
+        player1.nextTurn();
+        System.out.println("Turn 2 - "+player1);
+
+        player1.nextTurn();
+        System.out.println("Turn 3 - "+player1);
+
+        for (int i=0; i<17; i++) {
+            player1.nextTurn();
+        }
+        System.out.println("Turn 20 - "+player1);
 
     }
 }
