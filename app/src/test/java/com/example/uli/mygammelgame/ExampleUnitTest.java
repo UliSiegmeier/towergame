@@ -9,6 +9,8 @@ import com.example.uli.mygammelgame.model.inventory.Item;
 import com.example.uli.mygammelgame.model.inventory.ItemMap;
 import com.example.uli.mygammelgame.model.inventory.ResourceMap;
 import com.example.uli.mygammelgame.model.inventory.ResourceType;
+import com.example.uli.mygammelgame.model.tower.Level;
+import com.example.uli.mygammelgame.model.tower.Tower;
 
 import org.junit.Test;
 
@@ -141,6 +143,41 @@ public class ExampleUnitTest {
             player1.nextTurn();
         }
         System.out.println("Turn 20 - "+player1);
+
+        // TOWER
+        int towerWidth = 3;
+        Tower tower = new Tower(towerWidth);
+        System.out.println("Created Tower... ");
+        System.out.println("    - currentLevel:"+tower.getCurrentLevel());
+        System.out.println("    - finishedLevels:"+tower.getNumberOfFinishedLevels());
+
+        tower.buildBuilding(0, startingHouse);
+        tower.buildBuilding(0, startingHouse); // this should be ignore by the tower
+        tower.buildBuilding(1, startingField);
+        tower.buildBuilding(2, startingField); // should also not be possible
+        System.out.println("    - buildings: "+tower.getBuildings());
+
+        // building more stuff
+        Item house_1_2 = new Item("HOUSE", "Huts", house_price, house_input, house_output);
+        tower.buildBuilding(2, house_1_2);
+
+        Item house_2_0 = new Item("HOUSE", "Huts", house_price, house_input, house_output);
+        tower.buildBuilding(0, house_2_0);
+
+        Item house_2_1 = new Item("HOUSE", "Huts", house_price, house_input, house_output);
+        tower.buildBuilding(1, house_2_1);
+
+        Item house_2_2 = new Item("HOUSE", "Huts", house_price, house_input, house_output);
+        tower.buildBuilding(2, house_2_2);
+
+        Item house_3_0 = new Item("HOUSE", "Huts", house_price, house_input, house_output);
+        tower.buildBuilding(0, house_3_0);
+
+        System.out.println("built 5 more houses  ");
+        System.out.println("    - currentLevel:"+tower.getCurrentLevel());
+        System.out.println("    - finishedLevels:"+tower.getNumberOfFinishedLevels());
+        System.out.println("    - buildings: "+tower.getBuildings());
+        System.out.println("    - building output: "+tower.getBuildings().getResourceOutput());
 
     }
 }

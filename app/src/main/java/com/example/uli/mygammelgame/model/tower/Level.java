@@ -23,5 +23,9 @@ public class Level<Item> extends ArrayList {
         }
     }
 
+    public boolean isFull() {
+        return !contains(null);
+    }
+
 
 }
