@@ -1,53 +1,42 @@
 package com.example.uli.mygammelgame.model.tower;
 
 import com.example.uli.mygammelgame.model.inventory.Item;
+import com.example.uli.mygammelgame.model.tower.Level;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
- * Holds levels of building slots
  * Created by uli on 2/7/17.
  */
 
-public class Tower {
+public class Tower implements TowerInterface {
 
     private int width;
-    private int maxLevel;
-    private Item[][] buildingSlots;
-//    private int activeLevel;
+    private Stack<Level> levels ;
 
-    public Tower(int width, int maxHeight) {
+    public Tower(int width) {
         this.width = width;
-        this.maxLevel = maxHeight;
-        this.buildingSlots = new Item[maxHeight][width];
-//        activeLevel = 0;
+        this.levels = new Stack <Level> ();
+        addLevel(new Level(width));
     }
 
-    public int getActiveLevel() {
-        Item slot;
-        int level = 0;
-        for (level = 0; level < maxLevel; level++) {
-            for (int slotNumber=0; slotNumber < width; slotNumber++)
-            {
-                slot = buildingSlots[level][slotNumber];
-                if (slot == null)
-                    return level; // height starts at 1. Returning here returns the level
-            }
-        }
-        return level;
+    
+    public void addLevel(Level level) {
+        this.levels.push(level);
     }
 
-    public int getWidth() {
-        return width;
+    public Level getCurrentLevel() {
+        return levels.peek();
     }
 
-    public int getMaxLevel() {
-        return maxLevel;
+    public int getNumberOfFinishedLevels() {
+        return levels.size()-1;
     }
 
-    public Item[][] getBuildingSlots() {
-        return buildingSlots;
+    public Level getLevel(int height) {
+        return levels.get(height);
     }
 }
