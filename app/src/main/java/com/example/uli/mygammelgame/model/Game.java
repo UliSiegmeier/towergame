@@ -40,14 +40,17 @@ public class Game {
     }
 
     public void nextTurn() {
+        // Turns can stay
         if (state == GameState.IN_PROGRESS) {
             // update turns
             turn = turn + 1;
 
+            // TODO: Population will become a resource
             // 1. update population
             population = population + (population * populationGrowthPerTurn);
             populationRounded = (int) Math.floor(population);
 
+            // TODO: Tower and Player will handle buildings and resources respectively
             // 2. update gold
             gold = (int) Math.floor(gold + (populationRounded * goldPerPopulation));
 
