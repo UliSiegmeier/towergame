@@ -59,10 +59,32 @@ public class MainActivity extends AppCompatActivity {
         tower.buildBuilding(0, BuildingGenerator.getInstance().generateField());
         tower.buildBuilding(1, BuildingGenerator.getInstance().generateHouse());
         tower.buildBuilding(2, BuildingGenerator.getInstance().generateHouse());
+
         tower.buildBuilding(2, BuildingGenerator.getInstance().generateMine());
         tower.buildBuilding(1, BuildingGenerator.getInstance().generateField());
         tower.buildBuilding(0, BuildingGenerator.getInstance().generateMine());
+
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateField());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateField());
         tower.buildBuilding(2, BuildingGenerator.getInstance().generateField());
+
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateMine());
+
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateHouse());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateHouse());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateHouse());
+
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateMine());
+
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateMine());
+
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateHouse());
 
         // GAME
         Player player = new Player(tower);
