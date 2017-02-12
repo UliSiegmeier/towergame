@@ -1,5 +1,8 @@
 package com.example.uli.mygammelgame.model;
 
+import com.example.uli.mygammelgame.model.config.GameConfig;
+
+
 public class Game {
 
     private GameState state;
@@ -7,36 +10,27 @@ public class Game {
 
     private int turn;
     private int score;
-    private int gold;
-    private double population;
-    private int populationRounded;
+    private Player player;
 
-    // TODO: Store these in settings
     private int maxTurns;
-    private float populationGrowthPerTurn;
-    private float goldPerPopulation;
 
 
-    public Game () {
-        // TODO: init settings
+    public Game(Player player) {
+        this.player = player;
         restart();
-        // someChange
     }
 
+
     private void initSettings() {
-        maxTurns = 100;
-        populationGrowthPerTurn = 0.03f;
-        goldPerPopulation = 1;
+        maxTurns = (Integer) GameConfig.getInstance().getConfig("GAME_MAX_TURNS");
+        turn = 1;
+        score = 0;
     }
 
     public void restart() {
         state = GameState.IN_PROGRESS;
         initSettings();
-        turn = 1;
-        score = 0;
-        gold = 0;
-        population = 1;
-        populationRounded = 1;
+        player.reset();
     }
 
     public void nextTurn() {
@@ -45,14 +39,8 @@ public class Game {
             // update turns
             turn = turn + 1;
 
-            // TODO: Population will become a resource
-            // 1. update population
-            population = population + (population * populationGrowthPerTurn);
-            populationRounded = (int) Math.floor(population);
-
-            // TODO: Tower and Player will handle buildings and resources respectively
-            // 2. update gold
-            gold = (int) Math.floor(gold + (populationRounded * goldPerPopulation));
+            // update Player (who will update tower)
+            player.nextTurn();
 
             // Last: Score
             score = calculateScore();
@@ -62,7 +50,8 @@ public class Game {
     }
 
     public int calculateScore() {
-        return (populationRounded * 10) + gold;
+        // TODO: better score calculation, based on levels, achievements, etc.
+        return (player.getTower().getNumberOfFinishedLevels() * 100);
     }
 
     // GETTERS
@@ -76,22 +65,12 @@ public class Game {
     public int getTurn() {
         return turn;
     }
-    public double getPopulation() {
-        return population;
-    }
-    public int getPopulationRounded() {
-        return populationRounded;
-    }
-    public int getGold() {
-        return gold;
-    }
 
     @Override
     public String toString() {
-        String s =  "GAME turn:"+turn+
-                    " pop:"+population+
-                    " popRounded:"+populationRounded+
-                    " gold:"+gold;
+        String s =  "GAME turn: "+turn+
+                    ", tower level: "+player.getTower().getCurrentLevel()+
+                    ", tower buildings: "+player.getTower().getBuildings().size();
         return s;
     }
 

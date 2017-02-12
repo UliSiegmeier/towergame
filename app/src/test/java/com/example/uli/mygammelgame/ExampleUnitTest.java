@@ -1,5 +1,6 @@
 package com.example.uli.mygammelgame;
 
+import com.example.uli.mygammelgame.model.Game;
 import com.example.uli.mygammelgame.model.GameEntity;
 import com.example.uli.mygammelgame.model.GameIdGenerator;
 import com.example.uli.mygammelgame.model.Player;
@@ -22,6 +23,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
     @Test
     public void something_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
@@ -125,8 +127,9 @@ public class ExampleUnitTest {
         startingBuildings.put(startingField);
 
         // PLAYER
-        Player player1 = new Player();
-        player1.setStartingBuildings(startingBuildings);
+/*
+        Player player1 = new Player(null);
+
         System.out.println("Created Player...");
         System.out.println(player1);
 
@@ -143,6 +146,7 @@ public class ExampleUnitTest {
             player1.nextTurn();
         }
         System.out.println("Turn 20 - "+player1);
+*/
 
         // TOWER
         int towerWidth = 3;
@@ -179,5 +183,25 @@ public class ExampleUnitTest {
         System.out.println("    - buildings: "+tower.getBuildings());
         System.out.println("    - building output: "+tower.getBuildings().getResourceOutput());
 
+
+        // PLAYER
+        Player player = new Player(tower);
+
+
+        // GAME
+        Game game = new Game(player);
+        System.out.println("--- GAME INIT ---");
+        System.out.println("turn "+ game.getTurn()+": "+game.toString());
+        game.nextTurn();
+
+        System.out.println("turn "+ game.getTurn()+": "+game.toString());
+        game.nextTurn();
+        System.out.println("turn "+ game.getTurn()+": "+game.toString());
+        game.nextTurn();
+        System.out.println("turn "+ game.getTurn()+": "+game.toString());
+        game.nextTurn();
+        System.out.println("turn "+ game.getTurn()+": "+game.toString());
+
     }
+
 }

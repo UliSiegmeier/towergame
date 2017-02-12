@@ -1,25 +1,33 @@
 package com.example.uli.mygammelgame;
 
 import android.app.Application;
+import android.app.IntentService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.GridView;
 
 import com.example.uli.mygammelgame.model.Game;
+import com.example.uli.mygammelgame.model.Player;
+import com.example.uli.mygammelgame.model.config.GameConfig;
+import com.example.uli.mygammelgame.model.inventory.Item;
+import com.example.uli.mygammelgame.model.inventory.ResourceMap;
+import com.example.uli.mygammelgame.model.tower.BuildingGenerator;
+import com.example.uli.mygammelgame.model.tower.Tower;
 
-import static android.R.attr.duration;
 
 public class MainActivity extends AppCompatActivity {
 
+    protected static Tower tower;
+    protected static Player player;
     protected static Game game;
 
     private TextView turnLabel;
     private TextView scoreLabel;
-    private TextView goldLabel;
-    private TextView populationLabel;
+    private GridView gridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +36,36 @@ public class MainActivity extends AppCompatActivity {
 
         turnLabel = (TextView) findViewById(R.id.counter_turns);
         scoreLabel = (TextView) findViewById(R.id.counter_score);
-        goldLabel = (TextView) findViewById(R.id.counter_gold);
-        populationLabel = (TextView) findViewById(R.id.counter_population);
+        gridview = (GridView) findViewById(R.id.gridview);
 
         if (game == null) {
-            game = new Game();
+            initGame();
         }
         updateLabels();
+    }
+
+    private void initGame() {
+        // TODO THis is a dummy!
+
+        // TOWER
+        int towerWidth = 3;
+        this.tower = new Tower(towerWidth);
+        Item house_template = new Item(  "HOUSE",
+                (String) GameConfig.getInstance().getConfig("HOUSE_NAME"),
+                (ResourceMap) GameConfig.getInstance().getConfig("HOUSE_PRICE"),
+                (ResourceMap) GameConfig.getInstance().getConfig("HOUSE_INPUT"),
+                (ResourceMap) GameConfig.getInstance().getConfig("HOUSE_OUTPUT"));
+        Item house_0_1_ = BuildingGenerator.generateBuilding(house_template);
+        tower.buildBuilding(0, house_0_1_);
+
+        // GAME
+        Player player = new Player(tower);
+        this.game = new Game(player);
     }
 
     private void updateLabels() {
         turnLabel.setText       ( getString(R.string.label_turn_text,       game.getTurn()) );
         scoreLabel.setText      ( getString(R.string.label_score_text,      game.getScore()) );
-        goldLabel.setText       ( getString(R.string.label_gold_text,       game.getGold()) );
-        populationLabel.setText ( getString(R.string.label_population_text, game.getPopulation()) );
     }
 
     public void onNextTurnClicked(View v) {
