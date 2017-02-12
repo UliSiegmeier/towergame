@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.IntentService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,29 +35,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        turnLabel = (TextView) findViewById(R.id.counter_turns);
-        scoreLabel = (TextView) findViewById(R.id.counter_score);
-        gridview = (GridView) findViewById(R.id.gridview);
-
         if (game == null) {
             initGame();
         }
+
+        turnLabel = (TextView) findViewById(R.id.counter_turns);
+        scoreLabel = (TextView) findViewById(R.id.counter_score);
+
+        gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new GridViewAdapter(this, game.getTower()));
+        gridview.setNumColumns(this.tower.getWidth());
+
         updateLabels();
     }
 
     private void initGame() {
-        // TODO THis is a dummy!
+        // TODO THis is a dummy! - Load from somewhere
 
         // TOWER
         int towerWidth = 3;
         this.tower = new Tower(towerWidth);
-        Item house_template = new Item(  "HOUSE",
-                (String) GameConfig.getInstance().getConfig("HOUSE_NAME"),
-                (ResourceMap) GameConfig.getInstance().getConfig("HOUSE_PRICE"),
-                (ResourceMap) GameConfig.getInstance().getConfig("HOUSE_INPUT"),
-                (ResourceMap) GameConfig.getInstance().getConfig("HOUSE_OUTPUT"));
-        Item house_0_1_ = BuildingGenerator.generateBuilding(house_template);
-        tower.buildBuilding(0, house_0_1_);
+
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateField());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateHouse());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateHouse());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(1, BuildingGenerator.getInstance().generateField());
+        tower.buildBuilding(0, BuildingGenerator.getInstance().generateMine());
+        tower.buildBuilding(2, BuildingGenerator.getInstance().generateField());
 
         // GAME
         Player player = new Player(tower);

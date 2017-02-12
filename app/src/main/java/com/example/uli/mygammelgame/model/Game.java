@@ -1,11 +1,13 @@
 package com.example.uli.mygammelgame.model;
 
 import com.example.uli.mygammelgame.model.config.GameConfig;
+import com.example.uli.mygammelgame.model.tower.Tower;
 
 
 public class Game {
 
     private GameState state;
+
     public enum GameState {IN_PROGRESS, FINISHED}
 
     private int turn;
@@ -64,6 +66,11 @@ public class Game {
     }
     public int getTurn() {
         return turn;
+    }
+
+    // TODO currently used in gridview
+    public Tower getTower() {
+        return player.getTower();
     }
 
     @Override

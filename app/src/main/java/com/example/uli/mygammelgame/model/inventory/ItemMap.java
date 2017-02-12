@@ -1,12 +1,12 @@
 package com.example.uli.mygammelgame.model.inventory;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Created by uli on 2/6/17.
  */
 
-public class ItemMap extends HashMap<String, Item> {
+public class ItemMap extends LinkedHashMap<String, Item> {
 
     private ResourceMap resourceInput;
     private ResourceMap resourceOutput;
