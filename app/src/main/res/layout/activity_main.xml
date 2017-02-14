@@ -10,6 +10,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_weight="0"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="top"
@@ -58,60 +59,49 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        >
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:stretchColumns="0,2">
-            <!--android:shrinkColumns="0,2"-->
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:layout_column="0"
-                    android:text="col 1"
-                    android:textAlignment="center"/>
-
-                <GridView
-                    android:layout_column="1"
-                    android:layout_width="270dp"
-                    android:layout_height="match_parent"
-
-                    android:background="#AAAAAA"
-
-                    android:id="@+id/gridview"
-                    android:columnWidth="90dp"
-                    android:numColumns="3"
-                    android:verticalSpacing="0dp"
-                    android:horizontalSpacing="0dp"
-                    android:stretchMode="none"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_column="2"
-                    android:text="col 3"
-                    android:textAlignment="center"/>
-
-            </TableRow>
-
-        </TableLayout>
-
-    </ScrollView>
 
     <LinearLayout
+        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+
+        <GridView
+            android:layout_weight="1"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+
+            android:background="#AAAAAA"
+
+            android:id="@+id/gridview"
+            android:columnWidth="90dp"
+            android:numColumns="3"
+            android:verticalSpacing="0dp"
+            android:horizontalSpacing="0dp"
+            android:stretchMode="none"
+            android:gravity="center_horizontal"/>
+
+        <Space
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
+        android:orientation="horizontal"
 
         android:paddingBottom="3dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"

@@ -3,15 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:layout_gravity="center_vertical"
     >
 
 
     <TextView
         android:id="@+id/textview_towercell_displayname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:textSize="12sp"
         tools:text="---"
-        android:gravity="center_horizontal"/>
+        android:gravity="center"/>
 
 </LinearLayout>
