@@ -4,13 +4,17 @@
     <string name="label_turn_text">Turn: %1$d</string>
     <string name="label_score_text">Score: %1$d</string>
     <string name="label_gold_text">Gold: %1$d</string>
-    <string name="label_population_text">Population: %1$f</string>
+
+    <string name="label_population_text">Population: %1$d</string>
+    <string name="label_food_text">Food: %1$d</string>
+    <string name="label_stone_text">Stone: %1$d</string>
 
     <string name="button_reset_text">Reset</string>
     <string name="button_next_turn_text">Next Turn</string>
 
     <string name="toast_game_ended">The game has ended.</string>
     <string name="toast_new_game">New game started!</string>
+
 
 
 </resources>

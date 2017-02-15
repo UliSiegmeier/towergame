@@ -39,37 +39,21 @@ public class Tower {
 //        createEmptyLevelSlots();
     }
 
-//    private void createEmptyLevelSlots() {
-//        for (int slot=0; slot<width; slot++) {
-//            addBuildingToGridArray(slot, null);
-//        }
-//    }
-
     // try to add building to current level. create new level if current level is full
     public boolean buildBuilding(int slotNumber, Item building) {
-        if (getCurrentLevel().isFull())
-            createNewEmptyLevel();
 
-        if ((getCurrentLevel().get(slotNumber) != null) || buildings.containsKey(building.getGameId()))
+        if (!slotIsEmpty(slotNumber) || buildings.containsKey(building.getGameId()))
             // TODO throw Exception
             return false;
         else {
             buildings.put(building);
-//            addBuildingToGridArray(slotNumber, building);
             getCurrentLevel().set(slotNumber, building);
+            if (getCurrentLevel().isFull())
+                createNewEmptyLevel();
             return true;
         }
-    }
 
-//    private void addBuildingToGridArray(int slot, Item building) {
-//        int insertPosition;
-//        if (getNumberOfFinishedLevels() == 0)
-//            insertPosition = slot;
-//        else
-//            insertPosition = (getNumberOfFinishedLevels() * width) + slot;
-//        buildingsGridArray.add(slot, building);
-//
-//    }
+    }
 
     public Level getCurrentLevel() {
         return levels.peek();
@@ -117,6 +101,9 @@ public class Tower {
         return buildingArray;
     }
 
+    public boolean slotIsEmpty(int slot) {
+        return (getCurrentLevel().get(slot) == null);
+    }
 
     public int getWidth() {
         return width;

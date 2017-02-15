@@ -32,7 +32,7 @@ public class Game {
     public void restart() {
         state = GameState.IN_PROGRESS;
         initSettings();
-        player.reset();
+//        player.reset();
     }
 
     public void nextTurn() {
@@ -62,7 +62,7 @@ public class Game {
         return state;
     }
     public int getScore() {
-        return score;
+        return calculateScore();
     }
     public int getTurn() {
         return turn;

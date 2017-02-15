@@ -38,30 +38,47 @@ public class GridViewAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
-//        Item item = (Item)tower.getBuildings().entrySet().toArray()[position];
-//        return item.getGameId();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-//        final Item building = (Item) tower.getBuildingsArray().get(position);
         final Item building = tower.getBuildingsArray()[position];
 
-        if (convertView == null) {
-            final LayoutInflater layoutInflater = LayoutInflater.from(context);
-            convertView = layoutInflater.inflate(R.layout.gridcell_layout_dummy, null);
-        }
+        if (building == null)
+            convertView = inflateEmptySlotView(position);
+        else
+            convertView = inflateBuildingDummyView(position, building);
 
-        // what to display
-        final TextView displayNameTextView = (TextView) convertView.findViewById(R.id.textview_towercell_displayname);
+        return convertView;
+    }
+
+    private View inflateBuildingDummyView(int position, Item building) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View buildingView = inflater.inflate(R.layout.gridcell_layout_dummy, null);
+
+        // set building type text
         String buildingText;
         if (building == null)
             buildingText = "EMPTY";
         else
             buildingText = building.getDisplayName();
+        final TextView displayNameTextView = (TextView) buildingView.findViewById(R.id.textview_towercell_displayname);
         displayNameTextView.setText(position +"\n"+ buildingText);
 
-        return convertView;
+        return buildingView;
+    }
+
+    private View inflateEmptySlotView(int position) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View slotView = inflater.inflate(R.layout.gridcell_layout_emptyslot, null);
+
+        String slotText = "+";
+        final TextView slotLabelTextView = (TextView) slotView.findViewById(R.id.textview_towercell_emptyslotlabel);
+        slotLabelTextView.setText(slotText);
+
+        return slotView;
     }
 }
+
+

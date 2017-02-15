@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorLightText">#FFFFFF</color>
+
+    <color name="colorBuildingDummyBackground">#CCCCCC</color>
+    <color name="colorBuildingDummyText">#000000</color>
+    <color name="colorEmptySlotText">#22EE22</color>
+
+    <color name="colorEmptySky">#9999FF</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+
 </resources>
